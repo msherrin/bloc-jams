@@ -104,6 +104,7 @@ $(document).ready(function() {
  
    var onHoverAction = function(event) {
      console.log('Hover action triggered.');
+     debugger;
      $(this).animate({'margin-top': '10px'});
    };
  
@@ -114,6 +115,8 @@ $(document).ready(function() {
  
     $('.selling-points .point').hover(onHoverAction, offHoverAction);
   });
+
+
 });
 
 ;
