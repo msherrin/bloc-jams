@@ -91,34 +91,61 @@
   globals.require.brunch = true;
 })();
 require.register("scripts/album", function(exports, require, module) {
+var albumPicasso = {
+  name: 'The Colors',
+  artist: 'Pablo Picasso',
+  label: 'Cubism',
+  year: '1881',
+  albumArtUrl: '/images/album-placeholder.png',
+  songs: [
+    { name: 'Blue', length: '4:26'},
+    { name: 'Green', length: '3:14'},
+    { name: 'Red', length: '5:01'},
+    { name: 'Pink', length: '3:21'},
+    { name: 'Magenta', length: '2:15'}
+  ]
+};
+
+var albumMarconi = {
+  name: 'The Telephone',
+  artist: 'Guglielmo Marconi',
+  label: 'EM',
+  year: '1989',
+  albumArtUrl: '/images/album-placeholder.png',
+  songs: [
+    { name: 'Hello, Operator?', length: '1:01'},
+    { name: 'Ring, ring, ring', length: '5:01'},
+    { name: 'Fits in your pocket', length: '3:21'},
+    { name: 'Can you hear me now?', length: '3:14'},
+    { name: 'Wrong phone number', length: '2:15'}
+  ]
+};
+
+
+
 var changeAlbumView = function(album) {
-   // Update the album title
-   var $albumTitle = $('.album-title');
-   $albumTitle.text(album.name);
- 
-   // Update the album artist
-   var $albumArtist = $('.album-artist');
-   $albumArtist.text(album.artist);
- 
-   // Update the meta information
-   var $albumMeta = $('.album-meta-info');
-   $albumMeta.text(album.year + " on " + album.label);
- 
-   // Update the album image
-   var $albumImage = $('.album-image img');
-   $albumImage.attr('src', album.albumArtUrl);
- 
-   // Update the Song List
-   var $songList = $(".album-song-listing");
-   $songList.empty();
-   var songs = album.songs;
-   for (var i = 0; i < songs.length; i++) {
-     var songData = songs[i];
-     var $newRow = createSongRow(i + 1, songData.name, songData.length);
-     $songList.append($newRow);
-   }
- 
- };
+
+  var $albumTitle = $('.album-title');
+  $albumTitle.text(album.name);
+
+  var $albumArtist = $('.album-artist');
+  $albumArtist.text(album.artist);
+
+  var $albumMeta = $('.album-meta-info');
+  $albumMeta.text(album.year + " on " + album.label);
+
+  var $albumImage = $('.album-image img');
+  $albumImage.attr('src', album.albumArtUrl);
+
+  var $songList = $('.album-song-listing');
+  $songList.empty();
+  var songs = album.songs;
+  for (var i = 0; i < songs.length; i++) {
+    var songData = songs[i];
+    var $newRow = createSongRow( i+1, songData.name, songData.length);
+    $songList.append($newRow);
+  }
+};
 
 
 var createSongRow = function(songNumber, songName, songLength) {
@@ -148,8 +175,8 @@ var createSongRow = function(songNumber, songName, songLength) {
 
 ;require.register("scripts/app", function(exports, require, module) {
 require("./landing");
-require('./collection');
-  require('./album');
+require("./collection");
+require("./album");
 
 
 });
@@ -225,26 +252,24 @@ if (document.URL.match(/\/collection.html/)) {
 });
 
 ;require.register("scripts/landing", function(exports, require, module) {
-$(document).ready(function() { 
-    $('.hero-content h3').click(function(){
-      var subText = $(this).text();
-       $(this).text(subText + "!");
-    });
- 
-   var onHoverAction = function(event) {
-     console.log('Hover action triggered.');
-     debugger;
-     $(this).animate({'margin-top': '10px'});
-   };
- 
-   var offHoverAction = function(event) {
-     console.log('Off-hover action triggered.');
-     $(this).animate({'margin-top': '0px'});
-   };
- 
-    $('.selling-points .point').hover(onHoverAction, offHoverAction);
+$(document).ready(function() {
+  $('.hero-content h3').click(function() {
+    subText = $(this).text();
+    $(this).text(subText + " !");
   });
 
+  var onHoverAction = function(event) {
+    console.log('Hover action triggered.');
+    $(this).animate({'margin-top': '10px'});
+  };
+
+  var offHoverAction = function(event) {
+    console.log('Off-hover action triggered');
+    $(this).animate({'margin-top': '0px'});
+  };
+
+  $('.selling-points .point').hover(onHoverAction, offHoverAction);
+});
 
 });
 
