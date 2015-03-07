@@ -3,11 +3,36 @@
 //require("./album");
 //require("./profile");
 
-angular.module('BlocJams', []).controller('Landing.controller', ['$scope', function($scope) {
-    $scope.subText = "Turn the music up!";
+blocJams = angular.module('BlocJams', ['ui.router']);
+ blocJams.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
+   $locationProvider.html5Mode(true);
+ 
+   $stateProvider.state('landing', {
+     url: '/',
+     controller: 'Landing.controller',
+     templateUrl: '/templates/landing.html'
+   });
 
-      $scope.subTextClicked = function() {
-        $scope.subText += '!';
+
+   $stateProvider.state('collection', {
+     url: '/collection',
+     controller: 'Collection.controller',
+     templateUrl: '/templates/collection.html'
+   });
+
+    $stateProvider.state('album', {
+     url: '/album',
+     templateUrl: '/templates/album.html',
+     controller: 'Album.controller'
+   });
+   
+ }]);
+ 
+  blocJams.controller('Landing.controller', ['$scope', function($scope) {
+  $scope.subText = "Turn the music up!";
+
+   $scope.subTextClicked = function() {
+     $scope.subText += '!';
    };
 
    $scope.albumURLs = [

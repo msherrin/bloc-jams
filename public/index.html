@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html ng-app="BlocJams">
+ <html ng-app="BlocJams">
+
   <head>
      <title>Bloc Jams</title>
      <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
@@ -17,55 +18,21 @@
        require('scripts/app');
      </script>
   </head>
-  
 
-  <body ng-controller='Landing.controller' class='landing'>
-    <h1> Welcome to Bloc Jams! </h1>
-    
+   <body>    
       <nav class="player-header-nav navbar">
-       <div class="container">
+        <div class="container">
          <div class='navbar-header'> <!-- Nav Bar -->
-           <a class='logo navbar-left'>
-             <img src="/images/blocjams.png">
+           <a ui-sref='landing' class='logo navbar-left'>
+             <img src="/images/blocjams.png" alt= "Bloc Jams Logo"/>
            </a>
          </div>
+         <ul class="nav navbar-nav navbar-right">
+          <li><a ui-sref='collection'>Library</a></li>
+         </ul>
        </div>
-      </nav>
- 
-    <div class ='hero-content'> <!-- Hero content -->
-        <div class = 'container'>
-        <h1> Bloc Jams </h1>
-        <h3 ng-click="subTextClicked()"> Turn it UP </h3>
-      </div>
-    </div>
- 
-    <div class='selling-points container'> <!-- selling points -->
-        <div class='row'>
-        <div class='point col-md-4'>
-    
-        <h5> Choose your music </h5>
-        <p> The world is full of music; why should you have to listen to music that someone else chose? </p>
-      </div>
-
-      <div class='point col-md-4'>
-        <h5> Unlimited, streaming, ad-free </h5>
-        <p> No arbitrary limits. No distractions. </p>
-      </div>
-
-      <div class='point col-md-4'>
-        <h5>Mobile enabled</h5>
-        <p> Listen to your music on the go. This streaming service is available on all mobile platforms.</p>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="landing-album-list container">
-       <div class="row">
-         <div class="col-md-4" ng-repeat="albumURL in albumURLs">
-           <img ng-src="{{albumURL}}">
-         </div>
-       </div>
-     </div>
-  </body> 
+     </nav>
+<!-- Render templates here -->
+     <div ui-view></div>
+  </body>
 </html>
