@@ -91,9 +91,7 @@
   globals.require.brunch = true;
 })();
 require.register("scripts/album", function(exports, require, module) {
-// Example Album
-
-var albumPicasso = {
+ var albumPicasso = {
   name: 'The Colors',
   artist: 'Pablo Picasso',
   label: 'Cubism',
@@ -271,9 +269,6 @@ if(document.URL.match(/\/album.html/)){
   });
 }
 
-
-
-
 });
 
 ;require.register("scripts/app", function(exports, require, module) {
@@ -303,7 +298,7 @@ angular.module("BlocJams", ["ui.router"]).config(['$stateProvider', '$locationPr
    $locationProvider.html5Mode(true);
  
  $stateProvider.state("landing", {
-      url: "/landing",
+      url: "/",
       controller: "Landing",
       templateUrl: "/templates/landing.html"
    });
@@ -633,9 +628,6 @@ angular.module("BlocJams").service("SongPlayer",["$rootScope", function($rootSco
   };
 }]);
 
-
-
-
 });
 
 ;require.register("scripts/collection", function(exports, require, module) {
@@ -707,63 +699,52 @@ if(document.URL.match(/\/collection.html/)){
     updateCollectionView();
   });
 }
-
-
-
-
-
-
-
 });
 
 ;require.register("scripts/landing", function(exports, require, module) {
-$(document).ready(function(){
-  $('.hero-content h3').click(function(){
-      var subText = $(this).text();
-      $(this).text(subText + " !");
-    });
+$(document).ready(function() {
+  $('.hero-content h3').click(function() {
+    subText = $(this).text();
+    $(this).text(subText + " !");
+  });
 
-  var onHoverAction = function(event){
-    console.log('hover action triggered');
+  var onHoverAction = function(event) {
+    console.log('Hover action triggered.');
     $(this).animate({'margin-top': '10px'});
   };
 
-  var offHoverAction = function(event){
-    console.log('off hover action triggered');
+  var offHoverAction = function(event) {
+    console.log('Off-hover action triggered');
     $(this).animate({'margin-top': '0px'});
   };
 
   $('.selling-points .point').hover(onHoverAction, offHoverAction);
-
 });
 
 });
 
 ;require.register("scripts/profile", function(exports, require, module) {
-var tabsContainer = '.user-profile-tabs-container'
-var selectTabHandler = function(event){
-  $tab = $(this);
-  $(tabsContainer + ' li').removeClass('active');
-  $tab.parent().addClass('active');
-  selectedTabName = $tab.attr('href');
-  console.log(selectedTabName);
-  $('.tab-pane').addClass('hidden');
-  $(selectedTabName).removeClass('hidden');
-  event.preventDefault();
-};
+ // holds the name of our tab button container for selection later in the function
+ var tabsContainer = ".user-profile-tabs-container"
+ var selectTabHandler = function(event) {
+     $tab = $(this);
+     $(tabsContainer + " li").removeClass('active');
+     $tab.parent().addClass('active');
+     selectedTabName = $tab.attr('href');
+     console.log(selectedTabName);
+     $(".tab-pane").addClass('hidden');
+     $(selectedTabName).removeClass('hidden');
+     event.preventDefault();
+ };
 
-if (document.URL.match(/\/profile.html/)) {
-  $(document).ready(function() {
-    var $tabs = $(tabsContainer + ' a');
-    $tabs.click(selectTabHandler);
-    $tabs[0].click();
-  });
-}
-
-
+ if (document.URL.match(/\/profile.html/)) {
+   $(document).ready(function() {
+     var $tabs = $(tabsContainer + " a");
+     $tabs.click(selectTabHandler);
+     $tabs[0].click();
+   });
+ }
 });
 
 ;
-
-
 //# sourceMappingURL=app.js.map

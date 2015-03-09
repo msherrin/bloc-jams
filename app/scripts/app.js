@@ -1,4 +1,4 @@
-r// require("./landing");
+// require("./landing");
 // require("./collection");
  //require("./album");
 // require("./profile");
@@ -24,7 +24,7 @@ angular.module("BlocJams", ["ui.router"]).config(['$stateProvider', '$locationPr
    $locationProvider.html5Mode(true);
  
  $stateProvider.state("landing", {
-      url: "/landing",
+      url: "/",
       controller: "Landing",
       templateUrl: "/templates/landing.html"
    });
